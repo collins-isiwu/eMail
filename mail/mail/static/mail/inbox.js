@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
   load_mailbox('inbox');
 });
 
-function compose_email() {
 
+function compose_email() {
   // Show compose view and hide other views
   document.querySelector('#emails-view').style.display = 'none';
   document.querySelector('#display-email').style.display = 'none';
@@ -25,10 +25,14 @@ function compose_email() {
   document.querySelector('#compose-recipients').value = '';
   document.querySelector('#compose-subject').value = '';
   document.querySelector('#compose-body').value = '';
+
+  // Remove any validation messages
+  document.querySelector("#compose-result").innerHTML ='';
+  document.querySelector("#compose-result").style.display ='none';
 }
 
+
 function load_mailbox(mailbox) {
-  
   // Show the mailbox and hide other views
   document.querySelector('#emails-view').style.display = 'block';
   document.querySelector('#display-email').style.display = 'none';
@@ -40,7 +44,6 @@ function load_mailbox(mailbox) {
   // When a user visits their Inbox, Sent mailbox, or Archive, load the appropriate mailbox
   getEmails(mailbox);
 }
-
 
 
 function SendMail(event) {
@@ -63,19 +66,17 @@ function SendMail(event) {
   .then(response => response.json())
   .then(result => {
       // Print result
-      console.log(result);
+      //console.log(result);
       
       // If successful, load user's sent inbox
       if (!result.error) {
         load_mailbox('sent');
       } else {
+        // else display an error message
         document.querySelector("#compose-result").innerHTML = result.error;
         document.querySelector("#compose-result").style.display = 'block';
         scroll(0,0);
       }
-  })
-  .catch(error => {
-    console.error(error);
   })
 }
 
