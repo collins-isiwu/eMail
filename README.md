@@ -4,4 +4,4 @@ This is a single-page web application that's controlled by JavaScript. JavaScrip
 JavaScript makes a GET call to request for emails in each mailbox. It makes a POST call to the backend using AJAX to save new emails. It also makes a PUT call in order to update the database on some properties of the model like the "read" property and "archive/unarchive" property of the Email model.
 
 ## YouTube Project Demonstration
-[https://youtu.be/Xm6YPwzgsAQ](Mail)
+[Mail - 4 minutes](https://youtu.be/Xm6YPwzgsAQ)
