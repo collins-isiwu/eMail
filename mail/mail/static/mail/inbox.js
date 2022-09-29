@@ -242,8 +242,10 @@ async function archive(email) {
 function reply_email(email) {
   // for the 'Re:' keyword before the subject of the email
   let subject = email.subject
-  if (subject.split('',1)[0] != 'Re:') {
-    subject = 'Re:' +  email.subject
+  if (subject.slice(0,3) == 'Re:') {
+    email.subject
+  } else {
+    `'Re:' ${email.subject}`
   }
   document.querySelector('#compose-recipients').value = email.sender;
   document.querySelector('#compose-subject').value = subject;
